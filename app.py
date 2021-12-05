@@ -29,6 +29,5 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     data = get_pokemon()
-
-    return render_template("index.html")
+    return render_template("index.html", datos=data)
 
