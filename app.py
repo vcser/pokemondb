@@ -1,5 +1,4 @@
-from flask import Flask, json
-from flask import jsonify
+from flask import Flask, json, render_template, jsonify
 import psycopg2
 import psycopg2.extras
 
@@ -26,12 +25,10 @@ def get_pokemon():
     return result
 
 app = Flask(__name__)
-app.config['ENV'] = 'development'
 
 @app.route("/")
-def hello_world():
+def index():
     data = get_pokemon()
-    data_list = json.dumps(data)
 
-    return f"Hola dream team\n {data_list}"
+    return render_template("index.html")
 
