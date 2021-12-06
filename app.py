@@ -29,5 +29,6 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     data = get_pokemon()
+    data = sorted(data, key=lambda d: d['id'])
     return render_template("index.html", datos=data)
 
