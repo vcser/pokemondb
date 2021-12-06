@@ -1,4 +1,18 @@
 <html>
+    <head>
+        <title>Pokedex</title>
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                background-color: #96D4D4;
+            }
+        </style>
+    </head>
     <body>
         <h1>Hola Dream Team</h1>
         <img src="/static/pokeball.png" width="400" height="400">
@@ -10,7 +24,7 @@
                 <th>Mote</th>
                 <th>Sexo</th>
                 <th>Nivel</th>
-                <th>Factor Random</th>
+                <th>Factor_Random</th>
             </tr>
             {% for i in datos %}
                 <tr>
