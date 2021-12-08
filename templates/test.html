@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            background-color: #96D4D4;
+        }
+    </style>
+    <script defer src="/static/js/test.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>test canvas</h1>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <h1>Hola Dream Team</h1>
+    <img src="/static/img/pokeball.png" width="400" height="400">
+    <br>
+    <span>Lista de pokemon: </span>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Mote</th>
+            <th>Sexo</th>
+            <th>Nivel</th>
+            <th>Factor_Random</th>
+        </tr>
+        {% for i in datos %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.mote }}</td>
+            <td>{{ i.sexop }}</td>
+            <td>{{ i.nivel }}</td>
+            <td>{{ i.factor_random }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <button type="button" onclick="foo()">increment</button>
+    <br>
+    <span>local: </span><span id="counter">0</span>
+    <span>static: </span><span id="static">0</span>
+    <br>
+    <a href="{{ url_for('test') }}">link a otra pagina</a>
+</body>
+
+</html>

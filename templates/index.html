@@ -1,40 +1,37 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Pokedex</title>
-        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-            }
-            th, td {
-                background-color: #96D4D4;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Hola Dream Team</h1>
-        <img src="/static/pokeball.png" width="400" height="400">
-        <br>
-        <span>Lista de pokemon: </span>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Mote</th>
-                <th>Sexo</th>
-                <th>Nivel</th>
-                <th>Factor_Random</th>
-            </tr>
-            {% for i in datos %}
-                <tr>
-                    <td>{{ i.id }}</td>
-                    <td>{{ i.mote }}</td>
-                    <td>{{ i.sexop }}</td>
-                    <td>{{ i.nivel }}</td>
-                    <td>{{ i.factor_random }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-    </body>
+
+<head>
+    <title>Pokedex</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="/static/js/main.js"></script>
+</head>
+
+<body>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img>
+            <p class="name"></p>
+            <p class="description"></p>
+            <p class="height"></p>
+            <p class="weight"></p>
+            <p class="elemental"></p>
+        </div>
+    </div>
+
+    <div class="nav">
+
+    </div>
+    <div class="main">
+        <img id="logo" src="/static/img/logo.png">
+        <input id="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
+        <div id="card-grid"></div>
+    </div>
+</body>
+
 </html>
