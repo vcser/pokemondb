@@ -1,6 +1,7 @@
 var data;
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
+var current = "pokedex";
 
 var content = document.getElementsByClassName("modal-content")[0];
 
@@ -13,7 +14,21 @@ function get_info_pokemon() {
                 data.forEach(element => {
                     add_card(grid, element);
                 });
-                // console.log(data);
+            }
+            )
+        }
+    );
+}
+
+function get_pokemon() {
+    fetch(window.origin + "/_pokemon", { method: "GET" }).then(
+        function (response) {
+            response.json().then((value) => {
+                data = value.data;
+                grid = document.getElementById("card-grid");
+                data.forEach(element => {
+                    add_card(grid, element);
+                });
             }
             )
         }
@@ -54,7 +69,6 @@ function search_pokemon() {
 }
 
 function show_info(pokemon) {
-    console.log(pokemon);
     const img = content.getElementsByTagName("img")[0];
     const name = content.getElementsByClassName("name")[0];
     const description = content.getElementsByClassName("description")[0];
@@ -66,8 +80,14 @@ function show_info(pokemon) {
     description.innerHTML = pokemon.descripcion;
     height.innerHTML = "Altura: " + pokemon.altura + " m";
     weight.innerHTML = "Peso: " + pokemon.peso + " kg";
-    elemental.innerHTML = pokemon.tipo_elemental1 + ", " + pokemon.tipo_elemental2;
+    elemental.innerHTML = "Tipo Elemental: " + pokemon.tipo_elemental1 + (pokemon.tipo_elemental2 == null ? "" : ("," + pokemon.tipo_elemental2));
     modal.style.display = "block";
+}
+
+function change_view(page) {
+    document.getElementsByClassName(current)[0].style.display = "none";
+    current = page
+    document.getElementsByClassName(current)[0].style.display = "";
 }
 
 window.onload = get_info_pokemon;

@@ -17,7 +17,6 @@ def get_pokemon():
     try:
         conn = connect_db()
         cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
-
         cursor.execute("select * from pokedex.pokemon")
         result = cursor.fetchall()
         result = [row._asdict() for row in result]
@@ -34,7 +33,6 @@ def get_info_pokemon():
     try:
         conn = connect_db()
         cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
-
         cursor.execute("select * from pokedex.info_pokemon")
         result = cursor.fetchall()
         result = [row._asdict() for row in result]
@@ -76,8 +74,21 @@ def info_pokemon():
     }
 
 
+@app.route("/_pokemon")
+def pokemon():
+    data = get_pokemon()
+    return {
+        "data": data
+    }
+
+
 @app.route("/test")
 def test():
     data = get_pokemon()
     data = sorted(data, key=lambda d: d['id'])
     return render_template("test.html", datos=data)
+
+
+@app.route("/acerca_de")
+def acerca_de():
+    return render_template("acerca_de.html")

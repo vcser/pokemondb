@@ -5,7 +5,7 @@ body {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 10; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -81,3 +81,59 @@ body {
 .card-img-container {
     background-color: #1d2934;
 }
+
+#nav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    background-color: #1d2934;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+}
+
+#nav a {
+    padding: 8px 8px 8px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffcc01;
+    display: block;
+    transition: 0.3s;
+}
+
+#nav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 200px;
+}
+
+.card-pokemon-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-pokemon-id {
+    background-color: #2575bb;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.card-pokemon-name {
+    font-style: normal;
+
+}
+
+.card {
+    cursor: pointer;
+}
+
+.acerca-de {
+    color: #ffcc11;
+}
+

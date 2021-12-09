@@ -24,13 +24,32 @@
         </div>
     </div>
 
-    <div class="nav">
-
+    <div id="nav">
+        <!-- <a href="{{ url_for('acerca_de') }}">Acerca de</a> -->
+        <a href="#" onclick="change_view('pokedex')">Pokedex</a>
+        <a href="#" onclick="change_view('pokemon')">Lista Pokemon</a>
+        <a href="#">Movimientos</a>
+        <a href="http://plop.inf.udec.cl/phppgadmin/">Plop</a>
+        <a onclick="change_view('acerca-de')" href="#">Acerca de</a>
     </div>
     <div class="main">
-        <img id="logo" src="/static/img/logo.png">
-        <input id="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
-        <div id="card-grid"></div>
+        <div class="pokedex">
+            <img id="logo" src="/static/img/logo.png">
+            <input id="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
+            <div id="card-grid"></div>
+        </div>
+        <div class="acerca-de" style="display: none;">
+            <h1>Integrantes</h1>
+            <p>Vicente Cser</p>
+            <p>Sebastian Cordova</p>
+            <p>Giorgio Riffo</p>
+            <p>Vicente Rodriguez</p>
+        </div>
+        <div class="pokemon" style="display: none;">
+            <img id="logo" src="/static/img/logo.png">
+            <input id="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
+            <div id="pokemon-grid"></div>
+        </div>
     </div>
 </body>
 
