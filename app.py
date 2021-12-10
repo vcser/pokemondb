@@ -18,6 +18,11 @@ def get_pokemon():
         conn = connect_db()
         cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
         cursor.execute("select * from pokedex.pokemon")
+        '''
+        select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random
+        from info_pokemon as ip, pokemon as p, representa as r
+        where r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex
+        '''
         result = cursor.fetchall()
         result = [row._asdict() for row in result]
 
@@ -53,19 +58,6 @@ def index():
     return render_template("index.html")
 
 
-numero: int = 0
-
-
-@app.route("/_num", methods=["GET", "POST"])
-def num():
-    if request.method == "POST":
-        global numero
-        numero += 1
-        return str(numero)
-    elif request.method == "GET":
-        return str(numero)
-
-
 @app.route("/_info_pokemon")
 def info_pokemon():
     data = get_info_pokemon()
@@ -80,13 +72,6 @@ def pokemon():
     return {
         "data": data
     }
-
-
-@app.route("/test")
-def test():
-    data = get_pokemon()
-    data = sorted(data, key=lambda d: d['id'])
-    return render_template("test.html", datos=data)
 
 
 @app.route("/acerca_de")

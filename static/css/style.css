@@ -11,7 +11,7 @@ body {
     top: 0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
+    /* overflow: hidden; */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
@@ -60,7 +60,8 @@ body {
 }
 
 #card-grid {
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -134,6 +135,7 @@ body {
 }
 
 .acerca-de {
-    color: #ffcc11;
+    /* color: #ffcc11; */
+    color: white;
 }
 
