@@ -16,6 +16,8 @@ async function get_info_pokemon() {
 }
 
 async function get_pokemon() {
+    if (data.pokemon) return;
+    // console.log("test");
     let response = await fetch(window.origin + "/_pokemon", { method: "GET" });
     let json = await response.json();
     data.pokemon = json.data;
@@ -115,7 +117,7 @@ function change_view(page, callback = null) {
 
 window.onload = async () => {
     await get_info_pokemon();
-    await get_pokemon();
+    //await get_pokemon();
 }
 
 window.onclick = function (event) {
