@@ -26,6 +26,7 @@
         <!-- <a href="{{ url_for('acerca_de') }}">Acerca de</a> -->
         <a href="#" onclick="change_view('pokedex')">Pokedex</a>
         <a href="#" onclick="change_view('pokemon-list',get_pokemon)">Lista Pokemon</a>
+        <a href="#">Entrenadores</a>
         <a href="#">Movimientos</a>
         <a href="http://plop.inf.udec.cl/phppgadmin/">Plop</a>
         <a onclick="change_view('acerca-de')" href="#">Acerca de</a>
@@ -42,6 +43,7 @@
             <p>Sebastian Cordova</p>
             <p>Giorgio Riffo</p>
             <p>Vicente Rodriguez</p>
+            <audio controls loop src="/static/intro.mp3"></audio>
         </div>
         <div class="pokemon-list" style="display: none;">
             <input id="search-pokemon" class="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
