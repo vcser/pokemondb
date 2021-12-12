@@ -24,6 +24,7 @@ function get_pokemon() {
     fetch(window.origin + "/_pokemon", { method: "GET" }).then(
         function (response) {
             response.json().then((value) => {
+                data.pokemon = value.data;
                 grid = document.getElementById("pokemon-grid");
                 value.data.forEach(element => {
                     add_pokemon(grid, element);
@@ -53,11 +54,10 @@ function add_card(grid, pokemon) {
 
 function add_pokemon(grid, pokemon) {
     const div = document.createElement("div");
-    div.className = "pokemon-card";
+    div.className = "pokemon";
     div.innerHTML = `
-        <span class="card-pokemon-id">#</span>
         <div class="card-img-container">
-            <img class="card-pokemon-img" src="/static/img/pokemon-card/0.png">
+            <img class="card-pokemon-img" src="/static/img/pokemon-card/${pokemon.num_pokedex}.png">
         </div>
         <h3 class="card-pokemon-name">${pokemon.mote}</h3>
     `;
@@ -67,8 +67,8 @@ function add_pokemon(grid, pokemon) {
     grid.appendChild(div);
 }
 
-function search_pokemon() {
-    const input = document.getElementById("search");
+function search_pokedex() {
+    const input = document.getElementById("search-pokedex");
     const filter = input.value.toUpperCase();
     const grid = document.getElementById("card-grid");
     const cards = grid.getElementsByClassName("card");
@@ -112,6 +112,7 @@ window.onload = () => {
     get_info_pokemon();
     get_pokemon();
 }
+
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";

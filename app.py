@@ -17,15 +17,13 @@ def get_pokemon():
     try:
         conn = connect_db()
         cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
-        cursor.execute("select * from pokedex.pokemon")
-        '''
+        cursor.execute('''
         select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random
-        from info_pokemon as ip, pokemon as p, representa as r
+        from pokedex.info_pokemon as ip, pokedex.pokemon as p, pokedex.representa as r
         where r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex
-        '''
+        ''')
         result = cursor.fetchall()
         result = [row._asdict() for row in result]
-
         return result
     except:
         return []

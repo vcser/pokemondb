@@ -10,9 +10,7 @@
 </head>
 
 <body>
-    <!-- The Modal -->
     <div id="myModal" class="modal">
-        <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
             <img>
@@ -35,7 +33,7 @@
     <div class="main">
         <div class="pokedex">
             <img id="logo" src="/static/img/logo.png">
-            <input id="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
+            <input id="search-pokedex" class="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokedex()">
             <div id="card-grid"></div>
         </div>
         <div class="acerca-de" style="display: none;">
@@ -46,7 +44,7 @@
             <p>Vicente Rodriguez</p>
         </div>
         <div class="pokemon" style="display: none;">
-            <input id="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
+            <input id="search-pokemon" class="search" type="text" placeholder="Buscar pokemon" onkeyup="search_pokemon()">
             <div id="pokemon-grid"></div>
         </div>
     </div>
