@@ -5,34 +5,24 @@ var current = "pokedex";
 
 var content = document.getElementsByClassName("modal-content")[0];
 
-function get_info_pokemon() {
-    fetch(window.origin + "/_info_pokemon", { method: "GET" }).then(
-        function (response) {
-            response.json().then((value) => {
-                data.pokedex = value.data;
-                grid = document.getElementById("card-grid");
-                data.pokedex.forEach(element => {
-                    add_card(grid, element);
-                });
-            }
-            )
-        }
-    );
+async function get_info_pokemon() {
+    let response = await fetch(window.origin + "/_info_pokemon", { method: "GET" });
+    let json = await response.json();
+    data.pokedex = json.data;
+    grid = document.getElementById("card-grid");
+    data.pokedex.forEach(element => {
+        add_card(grid, element);
+    });
 }
 
-function get_pokemon() {
-    fetch(window.origin + "/_pokemon", { method: "GET" }).then(
-        function (response) {
-            response.json().then((value) => {
-                data.pokemon = value.data;
-                grid = document.getElementById("pokemon-grid");
-                value.data.forEach(element => {
-                    add_pokemon(grid, element);
-                });
-            }
-            )
-        }
-    );
+async function get_pokemon() {
+    let response = await fetch(window.origin + "/_pokemon", { method: "GET" });
+    let json = await response.json();
+    data.pokemon = json.data;
+    grid = document.getElementById("pokemon-grid");
+    json.data.forEach(element => {
+        add_pokemon(grid, element);
+    });
 }
 
 function add_card(grid, pokemon) {
@@ -83,6 +73,21 @@ function search_pokedex() {
     }
 }
 
+function search_pokemon() {
+    const input = document.getElementById("search-pokemon");
+    const filter = input.value.toUpperCase();
+    const grid = document.getElementById("pokemon-grid");
+    const cards = grid.getElementsByClassName("pokemon");
+    for (let i = 0; i < cards.length; i++) {
+        const name = cards[i].getElementsByClassName("card-pokemon-name")[0].innerHTML;
+        if (name.toUpperCase().indexOf(filter) > -1) {
+            cards[i].style.display = "";
+        } else {
+            cards[i].style.display = "none";
+        }
+    }
+}
+
 function show_info(pokemon) {
     const img = content.getElementsByTagName("img")[0];
     const name = content.getElementsByClassName("name")[0];
@@ -108,9 +113,9 @@ function change_view(page, callback = null) {
     }
 }
 
-window.onload = () => {
-    get_info_pokemon();
-    get_pokemon();
+window.onload = async () => {
+    await get_info_pokemon();
+    await get_pokemon();
 }
 
 window.onclick = function (event) {
