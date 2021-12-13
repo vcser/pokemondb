@@ -18,7 +18,6 @@ async function get_info_pokemon() {
 
 async function get_pokemon() {
     if (data.pokemon) return;
-    console.log("test");
     let response = await fetch(window.origin + "/_pokemon", { method: "GET" });
     let json = await response.json();
     data.pokemon = json.data;
@@ -49,11 +48,20 @@ function add_pokemon(grid, pokemon) {
     const div = document.createElement("div");
     div.className = "pokemon";
     div.innerHTML = `
-        <div class="card-img-container">
-            <img class="card-pokemon-img" src="/static/img/pokemon-card/${pokemon.num_pokedex}.png">
+        <div class="card-img-container" style="padding-left: 10px;">
+            <h3 class="card-pokemon-name" style="display: block;">${pokemon.mote}</h3>
+            <div style="display: flex;">
+                <img class="card-pokemon-img" src="/static/img/pokemon-card/${pokemon.num_pokedex}.png">
+                <span style="width: 100%;">
+                    <p>Nivel: ${pokemon.nivel}</p>
+                    <p>Sexo: ${pokemon.sexop}</p>
+                    <p>Entrenador: ${pokemon.entrenador}</p>
+                </span>
+            </div>
         </div>
-        <h3 class="card-pokemon-name">${pokemon.mote}</h3>
     `;
+    div.style.color = "white";
+    div.style.marginBottom = "50px";
     // div.addEventListener("click", () => {
     //     show_info(pokemon);
     // })
