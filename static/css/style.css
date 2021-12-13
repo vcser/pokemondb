@@ -27,6 +27,11 @@ body {
     height: 60%;
 }
 
+#modal-text {
+    text-align: start; 
+    font-size: 24px;
+}
+
 /* The Close Button */
 .close {
     color: #aaaaaa;
@@ -146,6 +151,7 @@ body {
 @media screen and (max-width: 600px) {
     #nav {width: 0;}
     .main {margin-left: 0;}
+    #modal-text {font-size: medium;}
 }
 
 #nav .closebtn {
