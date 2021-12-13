@@ -139,3 +139,13 @@ window.onclick = function (event) {
 span.onclick = function () {
     modal.style.display = "none";
 }
+
+function closeNav() {
+    document.getElementById("nav").style.width = "0";
+    document.getElementsByClassName("main")[0].style.marginLeft = "0";
+}
+
+function openNav() {
+    document.getElementById("nav").style.width = "200px";
+    document.getElementsByClassName("main")[0].style.marginLeft = "200px";
+}
