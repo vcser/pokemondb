@@ -13,7 +13,9 @@
     <div id="myModal" class="modal">
         <div class="modal-content">
         <span class="close">&times;</span>
-        <img style="width: 20%; height: auto;">
+        <div style="display: inline-block; margin-left: -15%;">
+            <img id="modal-image">
+        </div>
         <div id="modal-text">
             <p class="name"></p>
             <p class="description"></p>
@@ -23,7 +25,7 @@
             </div>
         </div>
     </div>
-    <span style="font-size:36px;cursor:pointer;position: fixed;left: 5px;top: 5px;color: #ffcc01;" onclick="openNav()">&#9776;</span>
+    <span style="font-size:42px;cursor:pointer;position: fixed;left: 5px;top: 5px;color: #ffcc01;" onclick="openNav()">&#9776;</span>
     <div id="nav">
         <!-- <a href="{{ url_for('acerca_de') }}">Acerca de</a> -->
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
