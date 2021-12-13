@@ -7,6 +7,7 @@ var content = document.getElementsByClassName("modal-content")[0];
 
 async function get_info_pokemon() {
     let response = await fetch(window.origin + "/_info_pokemon", { method: "GET" });
+    // if (!response.ok) {return;}
     let json = await response.json();
     data.pokedex = json.data;
     grid = document.getElementById("card-grid");
@@ -17,7 +18,7 @@ async function get_info_pokemon() {
 
 async function get_pokemon() {
     if (data.pokemon) return;
-    // console.log("test");
+    console.log("test");
     let response = await fetch(window.origin + "/_pokemon", { method: "GET" });
     let json = await response.json();
     data.pokemon = json.data;

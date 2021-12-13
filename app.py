@@ -1,4 +1,5 @@
 from flask import Flask, json, render_template, jsonify, request, url_for
+from flask.helpers import make_response
 import psycopg2
 import psycopg2.extras
 
@@ -15,37 +16,30 @@ def connect_db():
 
 def get_pokemon():
     try:
-        conn = connect_db()
-        cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
-        cursor.execute('''
-        select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random
-        from pokedex.info_pokemon as ip, pokedex.pokemon as p, pokedex.representa as r
-        where r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex
-        ''')
-        result = cursor.fetchall()
-        result = [row._asdict() for row in result]
-        return result
+        with connect_db() as conn:
+            with conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor) as cursor:
+                cursor.execute('''
+                select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random
+                from pokedex.info_pokemon as ip, pokedex.pokemon as p, pokedex.representa as r
+                where r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex
+                ''')
+                result = cursor.fetchall()
+                result = [row._asdict() for row in result]
+                return result
     except:
         return []
-    finally:
-        cursor.close()
-        conn.close()
 
 
 def get_info_pokemon():
     try:
-        conn = connect_db()
-        cursor = conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor)
-        cursor.execute("select * from pokedex.info_pokemon")
-        result = cursor.fetchall()
-        result = [row._asdict() for row in result]
-
-        return result
+        with connect_db() as conn:
+            with conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor) as cursor:
+                cursor.execute("select * from pokedex.info_pokemon")
+                result = cursor.fetchall()
+                result = [row._asdict() for row in result]
+                return result
     except:
         return []
-    finally:
-        cursor.close()
-        conn.close()
 
 
 app = Flask(__name__)
@@ -59,17 +53,19 @@ def index():
 @app.route("/_info_pokemon")
 def info_pokemon():
     data = get_info_pokemon()
-    return {
-        "data": data
-    }
+    response = make_response({"data": data})
+    if (not data):
+        response.status_code = 404
+    return response
 
 
 @app.route("/_pokemon")
 def pokemon():
     data = get_pokemon()
-    return {
-        "data": data
-    }
+    response = make_response({"data": data})
+    if (not data):
+        response.status_code = 404
+    return response
 
 
 @app.route("/acerca_de")
