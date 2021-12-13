@@ -52,10 +52,11 @@ function add_pokemon(grid, pokemon) {
             <h3 class="card-pokemon-name" style="display: block;">${pokemon.mote}</h3>
             <div style="display: flex;">
                 <img class="card-pokemon-img" style="object-fit: none;" src="/static/img/pokemon-card/${pokemon.num_pokedex}.png">
-                <span style="width: 100%;">
+                <span style="width: 90%;">
                     <p>Nivel: ${pokemon.nivel}</p>
                     <p>Sexo: ${pokemon.sexop}</p>
                     <p>Entrenador: ${pokemon.entrenador}</p>
+                    <p>Factor random: ${pokemon.factor_random}</p>
                 </span>
             </div>
         </div>
