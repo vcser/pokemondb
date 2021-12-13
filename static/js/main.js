@@ -75,7 +75,7 @@ function search_pokedex() {
     const grid = document.getElementById("card-grid");
     const cards = grid.getElementsByClassName("card");
     for (let i = 0; i < cards.length; i++) {
-        const number = cards[i].id;
+        const number = cards[i].getElementsByClassName("card-pokemon-id")[0].innerHTML;
         const name = cards[i].getElementsByClassName("card-pokemon-name")[0].innerHTML;
         if (name.toUpperCase().indexOf(filter) > -1 || number.indexOf(filter) > -1) {
             cards[i].style.display = "";
