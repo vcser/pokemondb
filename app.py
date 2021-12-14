@@ -18,12 +18,15 @@ def get_pokemon():
     try:
         with connect_db() as conn:
             with conn.cursor(cursor_factory=psycopg2.extras.NamedTupleCursor) as cursor:
-                # cursor.execute('''
-                # select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random
-                # from pokedex.info_pokemon as ip, pokedex.pokemon as p, pokedex.representa as r
-                # where r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex
-                # ''')
                 cursor.execute('''
+                select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random, null as entrenador
+                from pokedex.pokemon as p, pokedex.info_pokemon as ip, pokedex.representa as r
+                where r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex and not exists
+                (select 1
+                from pokedex.mochila as m, pokedex.contiene as c
+                where c.id_pokemon=p.id and c.id_mochila=m.id
+                )
+                union
                 select ip.num_pokedex, p.mote, p.sexop, p.nivel, p.factor_random, e.nombre as entrenador
                 from pokedex.entrenador as e, pokedex.tiene as t, pokedex.mochila as m, pokedex.contiene as c, pokedex.pokemon as p, pokedex.info_pokemon as ip, pokedex.representa as r
                 where t.id_entrenador=e.id and t.id_mochila=m.id and c.id_mochila=m.id and c.id_pokemon=p.id and r.id_pokemon=p.id and r.num_info_pokemon=ip.num_pokedex
