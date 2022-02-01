@@ -2,14 +2,15 @@ from flask import Flask, json, render_template, jsonify, request, url_for
 from flask.helpers import make_response
 import psycopg2
 import psycopg2.extras
+import os
 
 
 def connect_db():
     conn = psycopg2.connect(
-        host="plop.inf.udec.cl",
-        user="bdi2021cb",
-        password="bdi2021cb",
-        database="bdi2021cb"
+        host=os.environ["DB_HOST"],
+        user=os.environ["DB_USER"],
+        password=os.environ["DB_PASS"],
+        database=os.environ["DB_NAME"]
     )
     return conn
 
